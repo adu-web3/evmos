@@ -4,6 +4,7 @@ package eth
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/ethereum/go-ethereum/signer/core/apitypes"
 
@@ -332,6 +333,8 @@ func (e *PublicAPI) MaxPriorityFeePerGas() (*hexutil.Big, error) {
 // ChainId is the EIP-155 replay-protection chain id for the current ethereum chain config.
 func (e *PublicAPI) ChainId() (*hexutil.Big, error) { //nolint
 	e.logger.Debug("eth_chainId")
+	id, _ := e.backend.ChainID()
+	fmt.Printf("rpc return chainid: %v\n", id)
 	return e.backend.ChainID()
 }
 
